@@ -18,8 +18,10 @@ app.use(express.json())
 
 //cors
 app.use(cors())
+
 //routes
 app.use('/api/heroes',require('./routes/heroe.routes'));
+app.use('/api/usuarios',require('./routes/usuario.routes'));
 
 
 

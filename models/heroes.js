@@ -32,7 +32,7 @@ imageId:{
 type:String
 }
 
- },{collection :'Heroe'});
+ });
 
 
  HeroesSchema.method('toJSON', function(){
