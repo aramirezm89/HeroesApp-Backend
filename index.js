@@ -20,8 +20,10 @@ app.use(express.json())
 app.use(cors())
 
 //routes
+app.use('/api/auth',require('./routes/auth.routes'))
 app.use('/api/heroes',require('./routes/heroe.routes'));
 app.use('/api/usuarios',require('./routes/usuario.routes'));
+
 
 
 
