@@ -36,7 +36,7 @@ type:String
 
 
  HeroesSchema.method('toJSON', function(){
-    const {_v,...object} = this.toObject();
+    const { __v, ...object } = this.toObject();
 
     return object;
  })

@@ -76,7 +76,8 @@ const crearUsuario = async (req,res) =>{
 }
 
 const actualizarUsuario = async (req,res) =>{
-    const id = req.params.id;
+    
+  const id = req.params.id;
     
     try {
       const usuario = await Usuario.findById(id);
