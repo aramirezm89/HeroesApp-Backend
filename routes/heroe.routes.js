@@ -1,6 +1,6 @@
 const {Router} = require('express');
 const { check } = require('express-validator');
-const { getHeroes,getHeroeById, crearHeroe, actualizarHeroe, eliminarHeroe } = require('../controllers/HeroeController');
+const { getHeroes,getHeroeById, crearHeroe, actualizarHeroe, eliminarHeroe,getHeroesByPublisher, getHeroesBySuperHero } = require('../controllers/HeroeController');
 const { validarJWT } = require('../middlewares/validar-jwt');
 const { validarCampos } = require('../middlewares/validarCampos');
 const { validarAdminRole } = require('../middlewares/validarRole');
@@ -9,6 +9,10 @@ const { validarAdminRole } = require('../middlewares/validarRole');
 const router = Router();
 
 router.get('/',getHeroes);
+
+router.get("/publisher/:publisher",getHeroesByPublisher);
+
+router.get("/superhero/:superhero", getHeroesBySuperHero);
 
 router.get('/:id',getHeroeById)
 

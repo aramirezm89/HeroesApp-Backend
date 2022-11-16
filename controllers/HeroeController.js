@@ -23,6 +23,52 @@ const getHeroes = async (req, res) => {
   }
 };
 
+const getHeroesByPublisher = async (req, res) =>{
+const publisher = req.params.publisher;
+
+try {
+const heroList = await Heroe.find({publisher:{$regex:publisher,$options:"i"}}).sort({superhero:1});
+
+if(heroList){
+  return res.json({
+    ok:true,
+    heroes:heroList,
+    totalRegistros: (await heroList).length
+  })
+}
+
+} catch (error) {
+  console.log(error);
+  return res.status(500).json({
+    ok:false,
+    message:'Error del servidor'
+  })
+}
+}
+
+const getHeroesBySuperHero = async (req, res) => {
+  const superhero = req.params.superhero;
+
+  try {
+    const heroList = await Heroe.find({
+      superhero: { $regex: superhero, $options: "i" },
+    }).sort({ superhero: 1 });
+
+    if (heroList) {
+      return res.json({
+        ok: true,
+        heroes: heroList,
+        totalRegistros: (await heroList).length,
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      ok: false,
+      message: "Error del servidor",
+    });
+  }
+};
 const getHeroeById = async (req, res) => {
   
    const id = req.params.id;
@@ -40,7 +86,7 @@ const getHeroeById = async (req, res) => {
 
    return res.json({
       ok: true,
-      heroeDB,
+      hero :heroeDB,
     });
   } catch (error) {
     console.log(error);
@@ -164,5 +210,7 @@ module.exports = {
   getHeroeById,
   crearHeroe,
   actualizarHeroe,
-  eliminarHeroe
+  eliminarHeroe,
+  getHeroesByPublisher,
+  getHeroesBySuperHero,
 };
